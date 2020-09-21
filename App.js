@@ -7,21 +7,19 @@
  */
 
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import Header from './src/Header';
 
 class App extends Component {
+  state = {
+    appName: 'My First App',
+  };
+
   render() {
     return (
       <View style={styles.mainView}>
-        <View style={styles.subView}>
-          <Text style={styles.mainText}>hello world</Text>
-        </View>
-        <View style={styles.subView}>
-          <Text>hello world</Text>
-        </View>
-        <View style={styles.anotherSubView}>
-          <Text style={styles.mainText}>hello world</Text>
-        </View>
+        <Header name={this.state.appName} />
       </View>
     );
   }
@@ -30,16 +28,14 @@ class App extends Component {
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: 'white',
     paddingTop: 50, // px 단위가 아닌 실제 폰마다의 단위
     alignItems: 'center',
     justifyContent: 'center',
   },
   subView: {
-    flex: 1,
     backgroundColor: 'yellow',
     marginBottom: 10,
-    width: '50%',
   },
   anotherSubView: {
     flex: 2,
@@ -50,8 +46,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   mainText: {
-    fontSize: 50,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: 'normal',
     color: 'red',
     padding: 20,
   },
