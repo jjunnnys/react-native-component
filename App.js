@@ -7,12 +7,12 @@
  */
 
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 class App extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.mainView}>
         <View>
           <Text>hello world</Text>
         </View>
@@ -26,5 +26,15 @@ class App extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    backgroundColor: 'green',
+    paddingTop: 50, // px 단위가 아닌 실제 폰마다의 단위
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default App;
