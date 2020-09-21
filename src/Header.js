@@ -7,13 +7,19 @@
  */
 
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const header = ({name}) => {
   return (
-    <View style={styles.header}>
-      <Text>{name}</Text>
-    </View>
+    // view랑 text에 터치 이벤트를 먹일 수 있음
+    <TouchableOpacity
+      style={styles.header}
+      //   onPress={() => alert('hello world')}
+      onLongPress={() => alert('hello world')}>
+      <View>
+        <Text>{name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
