@@ -3,23 +3,37 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
+ * @flow
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
+import Generator from './src/Generator';
 
 import Header from './src/Header';
 
 class App extends Component {
   state = {
     appName: 'My First App',
+    random: [36, 999],
+  };
+
+  onAddRandomNum = () => {
+    alert('add random number!!!');
   };
 
   render() {
     return (
       <View style={styles.mainView}>
         <Header name={this.state.appName} />
+        <View>
+          <Text
+            style={styles.mainText}
+            onPress={() => alert('text touch event')}>
+            Hello World
+          </Text>
+        </View>
+        <Generator add={this.onAddRandomNum} />
       </View>
     );
   }

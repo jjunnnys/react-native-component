@@ -9,7 +9,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const header = ({name}) => {
+const Header = ({name}) => {
   return (
     // view랑 text에 터치 이벤트를 먹일 수 있음
     <TouchableOpacity
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default header;
+export default Header;
