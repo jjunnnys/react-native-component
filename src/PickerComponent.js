@@ -7,17 +7,36 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {Picker} from '@react-native-community/picker';
+import Slider from '@react-native-community/slider';
 
 class PickerComponent extends Component {
   state = {
     country: 'korea',
+    value: 50,
+  };
+
+  sliderValueChange = (value) => {
+    this.setState(() => ({
+      value: value,
+    }));
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <Slider
+          style={{height: 40, width: 300}}
+          value={this.state.value}
+          minimumValue={0}
+          maximumValue={100}
+          onValueChange={this.sliderValueChange}
+          maximumTrackTintColor="red"
+          minimumTrackTintColor="blue"
+          step={1}
+        />
+        <Text style={styles.input}>{this.state.value}</Text>
         <Picker
           style={{width: 250, height: 50}}
           selectedValue={this.state.country}
@@ -40,6 +59,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     marginBottom: 200,
     alignItems: 'center',
+  },
+  input: {
+    width: '100%',
+    marginTop: 20,
+    fontSize: 25,
   },
 });
 
