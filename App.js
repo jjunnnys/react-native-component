@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import Icon from './assets/images/icon.png';
+import ModalComponent from './src/Modal';
 
 class App extends Component {
   state = {
@@ -34,16 +35,7 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <Image
-          style={styles.image}
-          // source={Icon}
-          source={{
-            uri:
-              'https://lh3.googleusercontent.com/proxy/EMKVYz5Gr6pJWQis_pcHoDkYYRFtj762ZUaBVcqZxtnoAGfl3j465Iihr6p1Yapcvlol_lIiOzgZMDcL-jfjnzcUdRnjhGKuDImM0Q9ahcoKlfXXOA',
-          }}
-          resizeMode="contain" // contain : 주어진 공간에서 원본 사진을 보여주는 것, cover: 주어진 공간 다 차지 하는 것 (두 방법 모두 가로새로 비율 유지)
-          onLoadEnd={() => alert('로딩 끝')} // 이미지를 다 불러오면 실행되는 props
-        />
+        <ModalComponent />
       </View>
     );
   }
