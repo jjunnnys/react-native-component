@@ -7,15 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  Button,
-  TextInput,
-  ScrollView,
-  Text,
-} from 'react-native';
-import PickerComponent from './src/PickerComponent';
+import {View, StyleSheet, Image} from 'react-native';
+import Icon from './assets/images/icon.png';
 
 class App extends Component {
   state = {
@@ -41,25 +34,16 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <PickerComponent />
-        {/* <TextInput
-          style={styles.input}
-          value={this.state.myTextInput}
-          onChangeText={this.onChangeInput}
-          multiline={true} // textarea
-          maxLength={100}
-          autoCapitalize={'none'} // 대문자 자동 수정 옵션(보통 이메일 정보 입력 시 사용)
-          editable={true} // disable
+        <Image
+          style={styles.image}
+          // source={Icon}
+          source={{
+            uri:
+              'https://lh3.googleusercontent.com/proxy/EMKVYz5Gr6pJWQis_pcHoDkYYRFtj762ZUaBVcqZxtnoAGfl3j465Iihr6p1Yapcvlol_lIiOzgZMDcL-jfjnzcUdRnjhGKuDImM0Q9ahcoKlfXXOA',
+          }}
+          resizeMode="contain" // contain : 주어진 공간에서 원본 사진을 보여주는 것, cover: 주어진 공간 다 차지 하는 것 (두 방법 모두 가로새로 비율 유지)
+          onLoadEnd={() => alert('로딩 끝')} // 이미지를 다 불러오면 실행되는 props
         />
-        <Button title="Add Text" onPress={this.onAddTextInput} />
-
-        <ScrollView style={{width: '100%'}}>
-          {this.state.alphabet.map((v, i) => (
-            <Text key={i} style={styles.mainText}>
-              {v}
-            </Text>
-          ))}
-        </ScrollView> */}
       </View>
     );
   }
@@ -98,6 +82,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 25,
     padding: 10,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });
 
