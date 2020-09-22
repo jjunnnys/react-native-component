@@ -16,11 +16,25 @@ import NumList from './src/NumList';
 class App extends Component {
   state = {
     appName: 'My First App',
-    random: [36, 999],
+    random: [],
   };
 
   onAddRandomNum = () => {
-    alert('add random number!!!');
+    const randomNum = Math.floor(Math.random() * 100) + 1; // Math.random() 0~1까지 랜덤한 변수를 만드는 내장 함수
+
+    this.setState((prev) => {
+      return {
+        random: [...prev.random, randomNum],
+      };
+    });
+  };
+
+  onNumDelete = (index) => () => {
+    const newArray = this.state.random.filter((num, i) => index !== i);
+
+    this.setState(() => ({
+      random: newArray,
+    }));
   };
 
   render() {
@@ -35,7 +49,7 @@ class App extends Component {
           </Text>
         </View>
         <Generator add={this.onAddRandomNum} />
-        <NumList num={this.state.random} />
+        <NumList num={this.state.random} remove={this.onNumDelete} />
       </View>
     );
   }
