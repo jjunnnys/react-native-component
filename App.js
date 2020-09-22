@@ -7,59 +7,57 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import Generator from './src/Generator';
-
-import Header from './src/Header';
-import Input from './src/Input';
-import NumList from './src/NumList';
+import {
+  View,
+  StyleSheet,
+  Button,
+  TextInput,
+  ScrollView,
+  Text,
+} from 'react-native';
 
 class App extends Component {
   state = {
-    appName: 'My First App',
-    random: [],
+    myTextInput: '',
+    alphabet: ['a', 'b', 'c', 'd'],
   };
 
-  onAddRandomNum = () => {
-    const randomNum = Math.floor(Math.random() * 100) + 1; // Math.random() 0~1까지 랜덤한 변수를 만드는 내장 함수
-
-    this.setState((prev) => {
-      return {
-        random: [...prev.random, randomNum],
-      };
+  onChangeInput = (e) => {
+    this.setState({
+      myTextInput: e,
     });
   };
 
-  onNumDelete = (index) => () => {
-    const newArray = this.state.random.filter((num, i) => index !== i);
-
-    this.setState(() => ({
-      random: newArray,
-    }));
+  onAddTextInput = () => {
+    this.setState((prev) => {
+      return {
+        myTextInput: '',
+        alphabet: [...prev.alphabet, prev.myTextInput],
+      };
+    });
   };
 
   render() {
     return (
       <View style={styles.mainView}>
-        {/* <Header name={this.state.appName} />
-        <View>
-          <Text
-            style={styles.mainText}
-            onPress={() => alert('text touch event')}>
-            Hello World
-          </Text>
-        </View>
-        <Generator add={this.onAddRandomNum} />
-        <ScrollView
-          style={{width: '100%'}}
-          // onMomentumScrollBegin={() => alert('begin')}
-          // onMomentumScrollEnd={() => alert('end')}
-          // onScroll={() => alert('scroll')}
-          // onContentSizeChange={(width, height) => alert(height)}
-          bounces={false}>
-          <NumList num={this.state.random} remove={this.onNumDelete} />
-        </ScrollView> */}
-        <Input />
+        <TextInput
+          style={styles.input}
+          value={this.state.myTextInput}
+          onChangeText={this.onChangeInput}
+          multiline={true} // textarea
+          maxLength={100}
+          autoCapitalize={'none'} // 대문자 자동 수정 옵션(보통 이메일 정보 입력 시 사용)
+          editable={true} // disable
+        />
+        <Button title="Add Text" onPress={this.onAddTextInput} />
+
+        <ScrollView style={{width: '100%'}}>
+          {this.state.alphabet.map((v, i) => (
+            <Text key={i} style={styles.mainText}>
+              {v}
+            </Text>
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -89,6 +87,15 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     color: 'red',
     padding: 20,
+    margin: 20,
+    backgroundColor: 'yellow',
+  },
+  input: {
+    width: '100%',
+    backgroundColor: '#eeeeee',
+    marginTop: 20,
+    fontSize: 25,
+    padding: 10,
   },
 });
 
