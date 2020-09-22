@@ -11,6 +11,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import Generator from './src/Generator';
 
 import Header from './src/Header';
+import NumList from './src/NumList';
 
 class App extends Component {
   state = {
@@ -34,6 +35,7 @@ class App extends Component {
           </Text>
         </View>
         <Generator add={this.onAddRandomNum} />
+        <NumList num={this.state.random} />
       </View>
     );
   }
@@ -45,7 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: 50, // px 단위가 아닌 실제 폰마다의 단위
     alignItems: 'center',
-    justifyContent: 'center',
   },
   subView: {
     backgroundColor: 'yellow',
